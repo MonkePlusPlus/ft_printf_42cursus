@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ptheo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/01 16:17:50 by ptheo             #+#    #+#             */
-/*   Updated: 2024/05/27 16:25:26 by ptheo            ###   ########.fr       */
+/*   Created: 2024/05/23 14:57:16 by ptheo             #+#    #+#             */
+/*   Updated: 2024/05/23 14:59:36 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
-size_t	ft_strlen(const char *str)
+int	main(void)
 {
-	size_t	i;
-
-	i = 0;
-	while (str && str[i])
-		i++;
-	return (i);
+	//ft_printf(" NULL %s NULL ", NULL);
+	ft_printf(" %x ", -1);
+	return (0);
 }

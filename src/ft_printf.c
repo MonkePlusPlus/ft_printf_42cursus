@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:59:44 by ptheo             #+#    #+#             */
-/*   Updated: 2024/04/21 15:59:45 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/05/27 16:16:29 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_printf(const char *string, ...)
 	va_start(argptr, string);
 	str = (char *)string;
 	count = 0;
-	while (*str)
+	while (str && *str)
 	{
 		if (*str == '%')
 		{

@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:59:48 by ptheo             #+#    #+#             */
-/*   Updated: 2024/04/21 15:59:49 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/05/27 14:26:19 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	print_arg_aux(char *str, va_list argptr)
 	else if (*str == 'u')
 		count = print_unsint(va_arg(argptr, unsigned int));
 	else if (*str == '%')
+	{
 		write(1, "%", 1);
+		count += 1;
+	}
 	else
 		return (-1);
 	return (count);
@@ -36,7 +39,7 @@ int	print_arg(char *str, va_list argptr)
 
 	count = 0;
 	if (*str == 'c')
-		count = print_char(va_arg(argptr, int));
+		count = print_char(va_arg(argptr, unsigned int));
 	else if (*str == 's')
 		count = print_str(va_arg(argptr, char *));
 	else if (*str == 'p')

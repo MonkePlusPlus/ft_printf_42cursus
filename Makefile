@@ -6,7 +6,7 @@
 #    By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/21 15:37:57 by ptheo             #+#    #+#              #
-#    Updated: 2024/04/25 00:32:47 by ptheo            ###   ########.fr        #
+#    Updated: 2024/05/23 14:56:46 by ptheo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ LIB_FILES = $(wildcard src_lib/*.c)
 C_FILES = $(wildcard src/*.c)
 
 SRC_FILES = $(C_FILES) $(LIB_FILES)
+MAIN = main.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
@@ -37,6 +38,9 @@ fclean :
 
 $(NAME) : $(OBJ_FILES)
 	ar rcs $(NAME) $(OBJ_FILES)
+
+test : 
+		$(CC) $(C_FLAGS) $(MAIN) $(SRC_FILES) -I $(INCLUDES)
 
 re : fclean all
 
