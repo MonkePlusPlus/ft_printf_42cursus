@@ -18,6 +18,8 @@ int	ft_printf(const char *string, ...)
 	char	*str;
 	int		count;
 
+	if (!string)
+		return (-1);
 	va_start(argptr, string);
 	str = (char *)string;
 	count = 0;

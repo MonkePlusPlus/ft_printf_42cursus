@@ -15,7 +15,7 @@
 size_t	ft_putnbr(unsigned long nbr)
 {
 	size_t	count;
-	char		c;
+	char	c;
 
 	count = 0;
 	if (nbr < 0)

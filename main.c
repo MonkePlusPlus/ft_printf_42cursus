@@ -6,7 +6,7 @@
 /*   By: ptheo <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:57:16 by ptheo             #+#    #+#             */
-/*   Updated: 2024/05/23 14:59:36 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/05/27 18:34:46 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	main(void)
 {
+	int	x = -1;
 	//ft_printf(" NULL %s NULL ", NULL);
-	ft_printf(" %x ", -1);
+	ft_printf(" my test : %p \n", &x);
+	printf(" printf : %p ", &x);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:00:24 by ptheo             #+#    #+#             */
-/*   Updated: 2024/05/27 16:24:22 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/05/28 13:36:40 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	print_str(char *str)
 	if (str == NULL)
 	{
 		ft_putstr("(null)");
-		return (1);
+		return (6);
 	}
 	ft_putstr(str);
 	return (ft_strlen(str));
@@ -31,10 +31,16 @@ int	print_str(char *str)
 
 int	print_ptr(void *ptr)
 {
-	unsigned long	nbr;
+	uintptr_t	*nbr;
 
-	nbr = (unsigned long)ptr;
-	return (print_hexama(nbr));
+	nbr = (uintptr_t *)ptr;
+	if (ptr == 0)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	write(1, "0x", 2);
+	return (print_hexaptr((unsigned long long)nbr) + 2);
 }
 
 int	print_dec(long dec)
