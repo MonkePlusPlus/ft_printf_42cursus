@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:59:48 by ptheo             #+#    #+#             */
-/*   Updated: 2024/05/27 18:31:48 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/06/25 15:52:59 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	print_arg_aux(char *str, va_list argptr)
 
 	count = 0;
 	if (*str == 'x')
-		count = print_hexam(va_arg(argptr, int));
+		count = print_hexa(va_arg(argptr, int), "0123456789abcdef");
 	else if (*str == 'X')
-		count = print_hexama(va_arg(argptr, int));
+		count = print_hexa(va_arg(argptr, int), "0123456789ABCDEF");
 	else if (*str == 'u')
-		count = print_unsint(va_arg(argptr, unsigned int));
+		count = ft_printnbr(va_arg(argptr, unsigned int));
 	else if (*str == '%')
 	{
 		write(1, "%", 1);
@@ -45,7 +45,7 @@ int	print_arg(char *str, va_list argptr)
 	else if (*str == 'p')
 		count = print_ptr(va_arg(argptr, void *));
 	else if (*str == 'd')
-		count = print_dec(va_arg(argptr, int));
+		count = print_int(va_arg(argptr, int));
 	else if (*str == 'i')
 		count = print_int(va_arg(argptr, int));
 	else
@@ -53,20 +53,46 @@ int	print_arg(char *str, va_list argptr)
 	return (count);
 }
 
-int	count_nbr(int nbr)
+int	print_hexa(unsigned int nbr, char *hexa)
 {
-	int	count;
+	size_t	count;
+	char	c;
 
-	count = 1;
-	if (nbr < 0)
+	count = 0;
+	if (nbr > 15)
 	{
-		nbr = -nbr;
-		count++;
+		count += print_hexa(nbr / 16, hexa);
+		c = hexa[nbr % 16];
+		write(1, &c, 1);
+		count += 1;
 	}
-	while (nbr > 9)
+	else
 	{
-		nbr /= 10;
-		count++;
+		c = hexa[nbr];
+		write(1, &c, 1);
+		count += 1;
+	}
+	return (count);
+}
+
+int	print_hexaptr(unsigned long long nbr, char *hexa)
+{
+	size_t	count;
+	char	c;
+
+	count = 0;
+	if (nbr > 15)
+	{
+		count += print_hexaptr(nbr / 16, hexa);
+		c = hexa[nbr % 16];
+		write(1, &c, 1);
+		count += 1;
+	}
+	else
+	{
+		c = hexa[nbr];
+		write(1, &c, 1);
+		count += 1;
 	}
 	return (count);
 }

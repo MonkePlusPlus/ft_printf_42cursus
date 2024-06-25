@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:00:24 by ptheo             #+#    #+#             */
-/*   Updated: 2024/05/28 13:36:40 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/06/25 15:52:39 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,26 @@
 
 int	print_char(char c)
 {
-	ft_putchar(c);
+	write(1, &c, 1);
 	return (1);
 }
 
 int	print_str(char *str)
 {
+	int	i;
+
+	i = 0;
 	if (str == NULL)
 	{
-		ft_putstr("(null)");
+		print_str("(null)");
 		return (6);
 	}
-	ft_putstr(str);
-	return (ft_strlen(str));
+	while (str && str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
 }
 
 int	print_ptr(void *ptr)
@@ -40,21 +47,28 @@ int	print_ptr(void *ptr)
 		return (5);
 	}
 	write(1, "0x", 2);
-	return (print_hexaptr((unsigned long long)nbr) + 2);
+	return (print_hexaptr((unsigned long long)nbr, "0123456789abcdef") + 2);
 }
 
-int	print_dec(long dec)
+size_t	ft_printnbr(unsigned long nbr)
 {
 	size_t	count;
+	char	c;
 
 	count = 0;
-	if (dec < 0)
+	if (nbr > 9)
 	{
-		write(1, "-", 1);
-		dec = -dec;
-		count++;
+		count += ft_printnbr(nbr / 10);
+		c = (nbr % 10) + '0';
+		write(1, &c, 1);
+		count += 1;
 	}
-	count += ft_putnbr(dec);
+	else
+	{
+		c = (nbr % 10) + '0';
+		write(1, &c, 1);
+		count += 1;
+	}
 	return (count);
 }
 
@@ -69,6 +83,6 @@ int	print_int(long nbr)
 		nbr = -nbr;
 		count++;
 	}
-	count += ft_putnbr(nbr);
+	count += ft_printnbr(nbr);
 	return (count);
 }
